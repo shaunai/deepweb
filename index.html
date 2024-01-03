@@ -3,10 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    Hello World
-    <p> Can You Help Me</p>
+
+<form id="loginForm">
+    <h2>Login</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="button" onclick="login()">Login</button>
+</form>
+
+<form id="registerForm" style="margin-top: 20px;">
+    <h2>Register</h2>
+    <label for="newUsername">Username:</label>
+    <input type="text" id="newUsername" name="newUsername" required>
+
+    <label for="newPassword">Password:</label>
+    <input type="password" id="newPassword" name="newPassword" required>
+
+    <button type="button" onclick="register()">Register</button>
+</form>
+
+<script>
+    // In a real-world scenario, you would use a more secure way to store user data (e.g., backend and database).
+    const userData = [
+        { username: 'user1', password: 'pass1' },
+        { username: 'user2', password: 'pass2' },
+        // Add more users as needed
+    ];
+
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const user = userData.find(u => u.username === username && u.password === password);
+
+        if (user) {
+            alert('Login successful!');
+        } else {
+            alert('Invalid username or password');
+        }
+    }
+
+    function register() {
+        const newUsername = document.getElementById('newUsername').value;
+        const newPassword = document.getElementById('newPassword').value;
+
+        // Check if the username is already taken
+        if (userData.some(u => u.username === newUsername)) {
+            alert('Username already taken. Please choose another one.');
+            return;
+        }
+
+        // Add the new user to the data
+        userData.push({ username: newUsername, password: newPassword });
+        alert('Registration successful! You can now log in.');
+    }
+</script>
+
 </body>
 </html>
