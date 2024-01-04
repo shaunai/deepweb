@@ -47,37 +47,31 @@
     </style>
 </head>
 <body>
+<form id="registerForm" style="margin-top: 20px;">
+    <h2>Register</h2>
+    <label for="newUsername">Username:</label>
+    <input type="text" id="newUsername" name="newUsername" required>
 
-<form id="loginForm">
-    <h2>Login</h2>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+    <label for="newPassword">Password:</label>
+    <input type="password" id="newPassword" name="newPassword" required>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-
-    <button type="button" onclick="login()">Login</button>
+    <button type="button" onclick="register()">Register</button>
 </form>
-<script>
-    // In a real-world scenario, you would use a more secure way to store user data (e.g., backend and database).
-    const userData = [
-        { username: 'user1', password: 'pass1' },
-        { username: 'user2', password: 'pass2' },
-        // Add more users as needed
-    ];
+ <script>
+        function register() {
+        const newUsername = document.getElementById('newUsername').value;
+        const newPassword = document.getElementById('newPassword').value;
 
-    function login() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        const user = userData.find(u => u.username === username && u.password === password);
-
-        if (user) {
-            alert('Login successful!');
-        } else {
-            alert('Invalid username or password');
+        // Check if the username is already taken
+        if (userData.some(u => u.username === newUsername)) {
+            alert('Username already taken. Please choose another one.');
+            return;
         }
+
+        // Add the new user to the data
+        userData.push({ username: newUsername, password: newPassword });
+        alert('Registration successful! You can now log in.');
     }
-</script>
-</body>
-</html>
+ </script>
+ </body>
+ </html>
