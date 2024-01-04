@@ -58,6 +58,12 @@
     <button type="button" onclick="register()">Register</button>
 </form>
  <script>
+// In a real-world scenario, you would use a more secure way to store user data (e.g., backend and database).
+    const userData = [
+        { username: 'user1', password: 'pass1' },
+        { username: 'user2', password: 'pass2' },
+        // Add more users as needed
+    ];
         function register() {
         const newUsername = document.getElementById('newUsername').value;
         const newPassword = document.getElementById('newPassword').value;
